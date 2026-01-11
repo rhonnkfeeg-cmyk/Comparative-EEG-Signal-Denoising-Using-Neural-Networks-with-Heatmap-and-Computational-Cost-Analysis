@@ -35,6 +35,20 @@ Follow the instructions below to correctly reconstruct the original folders:
       dataset_part1.zip
       dataset_part2.zip
       dataset_part3.zip
+      dataset_part4.zip
+      dataset_part5.zip
+      dataset_part6.zip
+      dataset_part7.zip
+      dataset_part8.zip
+      dataset_part9.zip
+      dataset_part10.zip
+      dataset_part11.zip
+      dataset_part12.zip
+      dataset_part13.zip
+      dataset_part14.zip
+      dataset_part15.zip
+      dataset_part16.zip
+      dataset_part17.zip
 
 2. Place ALL downloaded parts in the SAME directory.
 
@@ -145,3 +159,4 @@ Repeat STEPS B1 to B3 for the following folds:
    Files/Test_B/K5/
 
 Final performance metrics are obtained by averaging results across all folds.
+
