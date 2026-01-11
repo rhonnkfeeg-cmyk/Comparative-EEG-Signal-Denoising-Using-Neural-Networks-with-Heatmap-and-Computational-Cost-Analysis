@@ -120,7 +120,10 @@ Files/
 ├── RUN_INSTRUCTIONS.txt              # Instructions to run Test A and Test B
 │
 └── README.md
-## Citation
+
+
+---
+## 6. Citation
 
 If you use this repository, the source code, or any part of the experimental
 methodology in your research, please cite the following article:
