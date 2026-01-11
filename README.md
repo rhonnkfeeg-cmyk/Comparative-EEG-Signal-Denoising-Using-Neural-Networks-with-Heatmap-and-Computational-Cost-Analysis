@@ -64,7 +64,19 @@ and is divided into two complementary experimental scenarios:
 - **Test B**: Training and evaluation using K-Fold cross-validation (K = 5)
 
 ---
-## 5. Repository Structure (Actual Implementation)
+## 5. Citation
+
+If you use this repository, the source code, or any part of the experimental
+methodology in your research, please cite the following article:
+
+Martínez-Madrid, E., Medrano-Hermosillo, J. A., Ramírez-Quintana, J. A.,
+López-Estrada, F. R., Suárez-Sierra, O. J., and Djilali, L.
+**Comparative Analysis of EEG Signal Denoising Using Neural Networks:
+Heatmap Visualization and Computational Cost Evaluation**.
+Manuscript under review.
+
+---
+## 6. Repository Structure (Actual Implementation)
 
 The repository is structured exactly as follows:
 
@@ -122,15 +134,5 @@ Files/
 └── README.md
 
 
----
-## 6. Citation
 
-If you use this repository, the source code, or any part of the experimental
-methodology in your research, please cite the following article:
-
-Martínez-Madrid, E., Medrano-Hermosillo, J. A., Ramírez-Quintana, J. A.,
-López-Estrada, F. R., Suárez-Sierra, O. J., and Djilali, L.
-**Comparative Analysis of EEG Signal Denoising Using Neural Networks:
-Heatmap Visualization and Computational Cost Evaluation**.
-Manuscript under review.
 
