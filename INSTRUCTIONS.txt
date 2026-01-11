@@ -1,0 +1,147 @@
+INSTRUCTIONS TO RUN THE EXPERIMENTS
+
+This document describes how to execute all experiments included in this repository.
+The execution strictly follows the experimental protocol presented in the associated article.
+
+---------------------------------------------------------------------
+IMPORTANT: READ BEFORE EXECUTION
+---------------------------------------------------------------------
+
+Before running any experiment, carefully read the file:
+
+   REQUIREMENTS.txt
+
+This file specifies all required software, programming languages, libraries,
+CUDA configuration, and hardware dependencies needed to run the experiments.
+
+Ensure that:
+- Python and MATLAB are installed in the specified versions.
+- All required Python libraries are correctly installed.
+- CUDA and GPU drivers are properly configured (if GPU execution is used).
+
+Failure to meet these requirements may result in execution errors.
+
+---------------------------------------------------------------------
+DOWNLOADING AND EXTRACTING MULTI-PART ZIP FILES
+---------------------------------------------------------------------
+
+Due to file size limitations, some folders in this repository are provided
+as multi-part compressed files (e.g., .zip split into several parts).
+
+Follow the instructions below to correctly reconstruct the original folders:
+
+1. Download ALL parts of the compressed file.
+   Example:
+      dataset_part1.zip
+      dataset_part2.zip
+      dataset_part3.zip
+
+2. Place ALL downloaded parts in the SAME directory.
+
+3. Do NOT rename any of the zip files.
+
+4. Extract ONLY the first part of the archive.
+   For example:
+      Right-click on: dataset_part1.zip
+      Select: Extract here
+
+5. The extraction process will automatically detect and use the remaining
+   parts to reconstruct the complete folder.
+
+6. After extraction, verify that the resulting folder structure matches
+   the repository structure described in the README.
+
+IMPORTANT NOTES:
+- Extracting only one part is sufficient; do NOT extract each part separately.
+- Ensure enough disk space before extraction.
+- Use standard extraction tools such as WinRAR, 7-Zip, or unzip (Linux).
+
+---------------------------------------------------------------------
+GENERAL INFORMATION
+---------------------------------------------------------------------
+
+- Do NOT rename folders or files.
+- Do NOT change the directory structure.
+- All scripts rely on fixed relative paths.
+- Results are automatically stored in the corresponding "results" folders.
+- Python must be installed and properly configured before execution.
+
+---------------------------------------------------------------------
+TEST A: PRETRAINED MODEL EVALUATION
+---------------------------------------------------------------------
+
+Test A evaluates the denoising performance of pretrained neural network models.
+No additional training is performed in this stage.
+
+STEP A1: Navigate to the Test A directory
+
+   Files/Test_A/PRETRAINED_TEST/TEST/
+
+STEP A2: Run pretrained model inference
+
+Execute the following script:
+
+   python P1_Run_EEG_Models_all_tests.py
+
+This script performs the following tasks:
+- Loads pretrained models from TRAINING/MODELS/
+- Processes all subjects (Sujeto_1 to Sujeto_54)
+- Applies EEG denoising independently for each channel
+- Stores intermediate outputs
+
+STEP A3: Compute metrics and generate heatmaps
+
+After Step A2 finishes, execute:
+
+   python P2_Run_EEG_Models_results_and_heatmaps.py
+
+This script:
+- Computes denoising performance metrics
+- Generates channel-wise EEG heatmaps
+- Stores numerical results and figures in the "results" folder
+
+---------------------------------------------------------------------
+TEST B: K-FOLD TRAINING AND EVALUATION
+---------------------------------------------------------------------
+
+Test B evaluates the models using a 5-Fold cross-validation strategy (K1–K5).
+Each fold is executed independently.
+
+STEP B1: Select a fold (example: K1)
+
+Navigate to:
+
+   Files/Test_B/K1/TEST/
+
+STEP B2: Run training and testing
+
+Execute:
+
+   python P1_Run_EEG_Models_all_tests.py
+
+This script:
+- Loads training data from TRAINING/
+- Trains neural network models for the selected fold
+- Tests the models using unseen subjects
+- Saves trained models and predictions
+
+STEP B3: Compute metrics and generate heatmaps
+
+After Step B2 finishes, execute:
+
+   python P2_Run_EEG_Models_results_and_heatmaps.py
+
+Results are saved in:
+
+   Files/Test_B/K1/TEST/results/
+
+STEP B4: Repeat for all folds
+
+Repeat STEPS B1 to B3 for the following folds:
+
+   Files/Test_B/K2/
+   Files/Test_B/K3/
+   Files/Test_B/K4/
+   Files/Test_B/K5/
+
+Final performance metrics are obtained by averaging results across all folds.

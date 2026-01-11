@@ -1,0 +1,91 @@
+SOFTWARE AND SYSTEM REQUIREMENTS
+
+--------------------------------------------------
+PYTHON ENVIRONMENT
+--------------------------------------------------
+
+- Python version: 3.7
+- TensorFlow version: 2.10
+
+--------------------------------------------------
+GPU AND CUDA SUPPORT
+--------------------------------------------------
+
+- NVIDIA GPU: GTX 1650 (or equivalent)
+- Minimum VRAM: 4 GB
+
+- CUDA Toolkit version: 11.2
+- cuDNN version: 8.1
+
+GPU acceleration is recommended for training (Test B),
+but CPU execution is supported.
+
+--------------------------------------------------
+REQUIRED PYTHON LIBRARIES
+--------------------------------------------------
+
+Core Libraries:
+- numpy
+- pandas
+- os (standard library)
+- math (standard library)
+- pathlib (standard library)
+- subprocess (standard library)
+
+Scientific Computing and Signal Processing:
+- scipy
+- scikit-learn
+- scikit-image
+- mne
+
+Machine Learning and Deep Learning:
+- tensorflow (2.10)
+- keras (included in TensorFlow)
+- torch
+- torchvision
+
+Data Handling and Output:
+- openpyxl
+
+--------------------------------------------------
+MATLAB ENVIRONMENT (REQUIRED)
+--------------------------------------------------
+
+- MATLAB version: R2023b (tested and validated)
+- MATLAB is REQUIRED for running the MATLAB-based scripts
+  and for handling .mat data files used in the project.
+
+--------------------------------------------------
+MATLAB CONFIGURATION
+--------------------------------------------------
+
+To ensure correct execution, the project directory must be
+added to the MATLAB path.
+
+1. Open MATLAB.
+2. Navigate to the project root directory.
+3. Add the project folder and all subfolders to the MATLAB path
+   using one of the following methods:
+
+   Option A (Command Window):
+      addpath(genpath(pwd))
+      savepath
+
+   Option B (GUI):
+      - Home → Set Path
+      - Add with Subfolders
+      - Select the project root directory
+      - Save
+
+4. Verify that all required MATLAB scripts are accessible
+   before execution.
+
+--------------------------------------------------
+NOTES
+--------------------------------------------------
+
+- All experiments were developed and tested using:
+  Python 3.7 + TensorFlow 2.10 + CUDA 11.2 + cuDNN 8.1
+  + MATLAB R2023b.
+- Using different software versions may require
+  minor code adjustments.
