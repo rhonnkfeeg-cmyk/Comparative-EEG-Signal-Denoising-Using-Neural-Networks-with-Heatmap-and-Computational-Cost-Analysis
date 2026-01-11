@@ -1,38 +1,32 @@
-# Comparative-EEG-Signal-Denoising-Using-Neural-Networks-with-Heatmap-and-Computational-Cost-Analysis
+# Comparative Analysis of EEG Signal Denoising Using Neural Networks:
+Heatmap Visualization and Computational Cost Evaluation
 
-This repository contains the official implementation of the experimental framework
-presented in the article:
+This repository contains the official implementation of the experiments reported in the article:
 
-**Comparative Analysis of EEG Signal Denoising Techniques in Brain–Computer Interfaces
-Using Neural Networks and Deep Learning: Heatmap Visualization and Computational Cost Evaluation**
+Comparative Analysis of EEG Signal Denoising Using Neural Networks:
+Heatmap Visualization and Computational Cost Evaluation
 
-The purpose of this repository is to provide a **reproducible and transparent implementation**
-of the algorithms, experimental protocol, and evaluation metrics used to compare
-different neural network architectures for EEG signal denoising in Brain–Computer
-Interface (BCI) applications.
+The code is organized exactly according to the experimental protocol described in the paper,
+which is divided into two main experimental scenarios: **Test A** and **Test B**.
 
 ---
 
-## 1. Problem Statement
+## 1. Project Overview
 
-Electroencephalographic (EEG) signals are highly susceptible to artifacts such as
-ocular (EOG), muscular (EMG), cardiac (ECG), and environmental noise. These artifacts
-severely affect the performance of BCI systems, particularly in real-time and
-resource-constrained environments.
+This work presents a comparative analysis of multiple neural network–based techniques
+for EEG signal denoising in Brain–Computer Interface (BCI) applications. The study focuses on:
 
-Recent deep learning–based denoising methods have demonstrated high reconstruction
-accuracy; however, they often involve significant computational complexity,
-which limits their applicability in real-time BCIs and embedded systems.
+- EEG signal reconstruction quality
+- Spatial behavior across EEG channels using heatmap visualization
+- Computational cost and efficiency from a Green AI perspective
 
-This work investigates whether **lighter neural architectures**, particularly the
-**Recurrent High-Order Neural Network (RHONN)**, can achieve denoising performance
-comparable to deep learning models while significantly reducing computational cost.
+A channel-wise processing strategy is adopted, where each EEG channel is treated independently.
 
 ---
 
 ## 2. Evaluated Algorithms
 
-The following neural network–based denoising algorithms are implemented and evaluated:
+The following neural network architectures are evaluated:
 
 - Multilayer Perceptron (MLP)
 - Recurrent Neural Network (RNN)
@@ -41,108 +35,99 @@ The following neural network–based denoising algorithms are implemented and ev
 - Transformer
 - Recurrent High-Order Neural Network (RHONN)
 
-All algorithms operate under a **channel-wise denoising strategy**, where each EEG
-channel from the international 10–20 system is processed independently. This approach
-preserves spatial information and enables channel-level performance analysis.
+All models operate independently on each EEG channel of the international 10–20 system.
 
 ---
 
 ## 3. Dataset Description
 
-The experiments are conducted using the EEG/EOG dataset proposed by **Klados and Bamidis**,
+The EEG/EOG dataset used in this work follows the database proposed by Klados and Bamidis,
 which provides clean EEG signals and synthetically contaminated EEG signals generated
 using a realistic biophysical artifact model.
 
-**Dataset characteristics:**
-- 19 EEG channels following the international 10–20 system
+Dataset characteristics:
+- 19 EEG channels (10–20 system)
 - Original sampling rate: 200 Hz (resampled to 256 Hz)
 - Window length: 2 seconds (512 samples)
 - Artifact sources: ocular, muscular, cardiac, and environmental noise
 
-Due to size and licensing restrictions, the dataset is **not included** in this repository.
-Users must obtain the dataset directly from the original authors.
+Due to size and licensing restrictions, the dataset is not included in this repository.
 
 ---
 
 ## 4. Experimental Protocol
 
 The experimental methodology strictly follows the protocol described in the article
-and is divided into **two main experiments: Test A and Test B**.
+and is divided into two complementary experimental scenarios:
+
+- **Test A**: Evaluation using pretrained neural network models
+- **Test B**: Training and evaluation using K-Fold cross-validation (K = 5)
 
 ---
+## 5. Repository Structure (Actual Implementation)
 
-## 4.1 Test A: Inference with Pretrained Models
+The repository is structured exactly as follows:
 
-**Test A** evaluates the denoising capability of **pretrained neural network models**
-without performing any additional training.
+```text
+Files/
+│
+├── Database/                         # EEG/EOG dataset (not included)
+│
+├── npy-matlab-master/                # MATLAB–Python interface
+│
+├── Test_A/                           # Test A: Pretrained model evaluation
+│   └── PRETRAINED_TEST/
+│       ├── TRAINING/
+│       │   └── MODELS/               # Pretrained models
+│       │
+│       └── TEST/
+│           ├── Sujeto_1/
+│           ├── Sujeto_2/
+│           ├── ...
+│           ├── Sujeto_54/
+│           │
+│           ├── results/              # Metrics and heatmap outputs
+│           │
+│           ├── P1_Run_EEG_Models_all_tests.py
+│           └── P2_Run_EEG_Models_results_and_heatmaps.py
+│
+├── Test_B/                           # Test B: K-Fold training and evaluation
+│   ├── K1/
+│   │   ├── TRAINING/
+│   │   │   ├── MODELS/
+│   │   │   ├── data_training_con.mat
+│   │   │   ├── data_training_con.npy
+│   │   │   ├── data_training_limp.mat
+│   │   │   └── data_training_limp.npy
+│   │   │
+│   │   └── TEST/
+│   │       ├── Sujeto_41/
+│   │       ├── Sujeto_42/
+│   │       ├── ...
+│   │       ├── Sujeto_50/
+│   │       │
+│   │       ├── results/              # Metrics and heatmap outputs
+│   │       │
+│   │       ├── P1_Run_EEG_Models_all_tests.py
+│   │       └── P2_Run_EEG_Models_results_and_heatmaps.py
+│   │
+│   ├── K2/
+│   ├── K3/
+│   ├── K4/
+│   └── K5/
+│
+├── REQUIREMENTS.txt                  # Required software and libraries
+├── RUN_INSTRUCTIONS.txt              # Instructions to run Test A and Test B
+│
+└── README.md
+## Citation
 
-### Description
-- Pretrained models reported in the literature are used.
-- EEG signals are resampled, segmented, and normalized.
-- Each EEG channel is processed independently.
-- Models are applied directly to previously unseen contaminated EEG signals.
+If you use this repository, the source code, or any part of the experimental
+methodology in your research, please cite the following article:
 
-### Objective
-- Evaluate the **generalization capability** of each algorithm.
-- Compare reconstruction accuracy across EEG channels.
-- Analyze spatial performance using channel-wise metrics and heatmap visualizations.
+Martínez-Madrid, E., Medrano-Hermosillo, J. A., Ramírez-Quintana, J. A.,
+López-Estrada, F. R., Suárez-Sierra, O. J., and Djilali, L.
+**Comparative Analysis of EEG Signal Denoising Using Neural Networks:
+Heatmap Visualization and Computational Cost Evaluation**.
+Manuscript under review.
 
-This test reflects realistic deployment conditions, where pretrained models are
-used in real-time BCI systems.
-
----
-
-## 4.2 Test B: Training and Cross-Validation from Raw Data
-
-**Test B** evaluates the performance of the algorithms when trained directly from
-the available EEG data.
-
-### Description
-- EEG signals are segmented into 2-second windows.
-- A **5-fold cross-validation** strategy is applied.
-- Training and validation are performed independently for each EEG channel.
-- Performance metrics are averaged across folds.
-
-### Objective
-- Analyze training stability and robustness.
-- Compare learning behavior among different architectures.
-- Evaluate performance under controlled and reproducible training conditions.
-
----
-
-## 5. Evaluation Metrics
-
-The denoising performance is assessed using time-domain, frequency-domain, and
-statistical similarity metrics:
-
-- Mean Squared Error (MSE)
-- Relative Root Mean Square Error (RRMSE)
-- Pearson Correlation Coefficient
-- Spearman Rank Correlation
-- Signal-to-Noise Ratio (SNR)
-- Structural Similarity Index (SSIM)
-- Mutual Information (MI)
-
-Spatial performance is evaluated using **channel-wise heatmaps** mapped onto the
-EEG 10–20 electrode layout.
-
----
-
-## 6. Computational Cost Analysis
-
-In addition to reconstruction accuracy, the computational cost of each algorithm
-is evaluated, considering:
-
-- Training time
-- Inference time
-- Model complexity
-- Suitability for real-time and low-power BCI applications
-
-This analysis supports a **Green AI perspective**, emphasizing efficiency alongside
-performance.
-
----
-
-## 7. Repository Structure
-
-The repository is organized to reflect the experimental workflow described above:
