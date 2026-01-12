@@ -51,8 +51,6 @@ Dataset characteristics:
 - Window length: 2 seconds (512 samples)
 - Artifact sources: ocular, muscular, cardiac, and environmental noise
 
-Due to size and licensing restrictions, the dataset is not included in this repository.
-
 ---
 
 ## 4. Experimental Protocol
